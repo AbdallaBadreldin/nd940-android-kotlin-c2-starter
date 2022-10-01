@@ -1,5 +1,4 @@
-package com.udacity.asteroidradar.detail
-
+package com.udacity.asteroidradar.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentDetailBinding
+
 
 class DetailFragment : Fragment() {
     override fun onCreateView(
