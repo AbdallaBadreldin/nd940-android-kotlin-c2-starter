@@ -20,6 +20,6 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 @Singleton
-object AsteroidNetwork {
+object AppNetwork {
     val retrofitService: AsteroidResponse by lazy { retrofit.create(AsteroidResponse::class.java) }
 }

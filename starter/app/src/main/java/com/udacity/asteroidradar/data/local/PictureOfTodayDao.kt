@@ -12,6 +12,6 @@ interface PictureOfTodayDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAsteroid(picOfToday: PictureOfDay)
 
-    @Query("SELECT * FROM asteroid_table ")
+    @Query("SELECT * FROM PictureOfDay ")
     fun getAllAsteroid(): LiveData<PictureOfDay>
 }

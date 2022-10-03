@@ -12,6 +12,6 @@ interface AsteroidDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAsteroid(astroid: Asteroid)
 
-    @Query("SELECT * FROM asteroid_table ")
+    @Query("SELECT * FROM Asteroid ")
     fun getAllAsteroid(): LiveData<List<Asteroid>>
 }
