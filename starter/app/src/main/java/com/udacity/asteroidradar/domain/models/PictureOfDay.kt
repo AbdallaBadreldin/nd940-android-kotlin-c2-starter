@@ -5,5 +5,5 @@ import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
 @Entity
-data class PictureOfDay(@Json(name = "media_type") val mediaType: String, val title: String,
-                       @PrimaryKey val url: String)
+data class PictureOfDay(@Json(name = "media_type") @PrimaryKey val mediaType: String, val title: String,
+                        val url: String)
