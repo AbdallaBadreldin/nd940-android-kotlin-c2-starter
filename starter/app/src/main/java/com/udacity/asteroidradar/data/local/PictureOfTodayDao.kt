@@ -9,7 +9,7 @@ import com.udacity.asteroidradar.domain.models.PictureOfDay
 
 @Dao
 interface PictureOfTodayDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAsteroid(picOfToday: PictureOfDay)
 
     @Query("SELECT * FROM PictureOfDay ")

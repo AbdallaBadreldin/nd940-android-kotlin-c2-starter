@@ -3,6 +3,7 @@ package com.udacity.asteroidradar.di
 import com.google.gson.GsonBuilder
 import com.udacity.asteroidradar.data.remote.ApiKeyInterceptor
 import com.udacity.asteroidradar.data.remote.AppNetwork
+import com.udacity.asteroidradar.data.remote.AsteroidResponse
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,11 +19,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val baseUrl = "https://adnodes.co/api/"
+    private const val baseUrl = "https://api.nasa.gov/"
 
     @Singleton
     @Provides
-    fun provideNetworkService(): AppNetwork {
+    fun provideNetworkService():AsteroidResponse {
 
         val httpClient = OkHttpClient.Builder()
             .addInterceptor(ApiKeyInterceptor())
@@ -37,7 +38,7 @@ object NetworkModule {
             .addConverterFactory(MoshiConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-            .create(AppNetwork::class.java)
+            .create(AsteroidResponse::class.java)
     }
 
 }

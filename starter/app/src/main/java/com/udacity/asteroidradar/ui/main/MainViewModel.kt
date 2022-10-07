@@ -6,9 +6,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(repo: AsteroidRepository) : ViewModel() {
+class MainViewModel @Inject constructor(val repo: AsteroidRepository) : ViewModel() {
 
-    fun getAllPicturesOfToday(){
-        repo.
+    suspend fun getAllPicturesOfToday(){
+        repo.getAllDataPictureOfTodayFromDatabase()
     }
 }

@@ -5,10 +5,10 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Asteroid(
-    @PrimaryKey val id: Long,
-    val element_count: Int,
-    val links: Links,
-    val near_earth_objects: NearEarthObjects
+    @PrimaryKey val id: Long? = 0,
+    val element_count: Int? = 0,
+    val links: Links? ,
+    val near_earth_objects: NearEarthObjects?
 
     /*
 //    val codename: String,
