@@ -16,6 +16,6 @@ interface AsteroidResponse {
     suspend fun getAsteroidList(
         @Path("start_date") startDate: String,
         @Path("end_date") endDate: String
-    ): Callback<Asteroid?>?
+    ): Response<Asteroid?>?
 
 }

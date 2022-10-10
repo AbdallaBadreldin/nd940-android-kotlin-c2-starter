@@ -10,6 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import retrofit2.Response
 import javax.inject.Inject
 
 
@@ -18,17 +19,17 @@ class AsteroidRepository @Inject constructor(
     private val pictureOfDayDao: PictureOfTodayDao,
     private val appNetwork: AsteroidResponse
 ) {
-//    suspend fun fetchAllAsteroidDataFromInternet(): Response<Asteroid> {
+//    suspend fun fetchAllAsteroidDataFromInternet(): Response<Asteroid?>? {
 //        return CoroutineScope(Dispatchers.IO).async {
 //            return@async appNetwork.getAsteroidList()
 //        }.await()
 //    }
 
-//    suspend fun getAllDataAsteroidFromDatabase(): LiveData<List<Asteroid>> {
-//        return CoroutineScope(Dispatchers.IO).async {
-//            return@async asteroidDao.getAllAsteroid()
-//        }.await()
-//    }
+    suspend fun getAllDataAsteroidFromDatabase(): LiveData<List<Asteroid>> {
+        return CoroutineScope(Dispatchers.IO).async {
+            return@async asteroidDao.getAllAsteroid()
+        }.await()
+    }
 
     fun getAsteroidDataFromDatabaseByDate() {}
 
@@ -37,27 +38,27 @@ class AsteroidRepository @Inject constructor(
     fun fetchAllPictureOfTodayDataFromInternet() {
         CoroutineScope(Dispatchers.IO).launch {
             val pic = appNetwork.getAsteroidPhoto()
-            if (pic?.isSuccessful == true) {
+            if (pic!!.isSuccessful) {
                 insertPictureOfTodayDataToDataBase(pic.body())
             }
         }
     }
 
-//    fun getAllDataPictureOfTodayFromDatabase(): LiveData<PictureOfDay> {
-//        return pictureOfDayDao.getAllAsteroid()
-//
-//    }
+    fun getAllDataPictureOfTodayFromDatabase(): LiveData<PictureOfDay> {
+        return pictureOfDayDao.getAllAsteroid()
+
+    }
 
     private suspend fun insertPictureOfTodayDataToDataBase(picOfToday: PictureOfDay?) {
             pictureOfDayDao.insertAsteroid(picOfToday = picOfToday!!)
     }
 
-//    fun clearAllPicturesOfTodayData() {
-//        pictureOfDayDao.clearAllData()
-//    }
+    fun clearAllPicturesOfTodayData() {
+        pictureOfDayDao.clearAllData()
+    }
 
-//    fun clearAllAsteroidData() {
-//        asteroidDao.clearAllData()
-//
-//    }
+    fun clearAllAsteroidData() {
+        asteroidDao.clearAllData()
+
+    }
 }

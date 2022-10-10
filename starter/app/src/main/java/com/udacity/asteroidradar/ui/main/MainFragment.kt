@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
@@ -20,31 +19,31 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMainBinding.inflate(inflater)
-//        binding.lifecycleOwner = this
-
+        binding.lifecycleOwner = this
 //        binding.viewModel = viewModel
 
         setHasOptionsMenu(true)
-//        viewModel.fetchAllPicturesOfToday()
-/*
+
         viewModel.getAllPicturesOfToday().observe(viewLifecycleOwner) {
             if (it != null) {
-                if (it.mediaType=="image"){
-                val picasso = Picasso.get()
-                picasso.load(it.url).into(binding.activityMainImageOfTheDay)
-            }
-                else{
+                if (it.mediaType == "image") {
+                    val picasso = Picasso.get()
+                    picasso.load(it.url).into(binding.activityMainImageOfTheDay)
+                } else {
                     //not image
 
                 }
 
-            }
-            else {
+            } else {
                 // no data exists
             }
         }
 
-*/
+
+
+
+        viewModel.fetchAllPicturesOfToday()
+
 
         return binding.root
     }

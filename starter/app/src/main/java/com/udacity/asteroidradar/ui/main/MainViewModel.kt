@@ -10,9 +10,9 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(val repo: AsteroidRepository) : ViewModel() {
 
-//    fun getAllPicturesOfToday(): LiveData<PictureOfDay> {
-//        return repo.getAllDataPictureOfTodayFromDatabase()
-//    }
+    fun getAllPicturesOfToday(): LiveData<PictureOfDay> {
+        return repo.getAllDataPictureOfTodayFromDatabase()
+    }
 
     fun fetchAllPicturesOfToday() {
         repo.fetchAllPictureOfTodayDataFromInternet()

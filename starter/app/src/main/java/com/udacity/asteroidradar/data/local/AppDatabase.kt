@@ -1,6 +1,7 @@
 package com.udacity.asteroidradar.data.local
 
 import androidx.room.Database
+import androidx.room.ProvidedTypeConverter
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.udacity.asteroidradar.domain.models.Asteroid
