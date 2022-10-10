@@ -1,15 +1,13 @@
 package com.udacity.asteroidradar.domain.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.udacity.asteroidradar.data.local.AsteroidDao
 import com.udacity.asteroidradar.data.local.PictureOfTodayDao
 import com.udacity.asteroidradar.data.remote.AsteroidResponse
 import com.udacity.asteroidradar.domain.models.Asteroid
 import com.udacity.asteroidradar.domain.models.PictureOfDay
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -37,9 +35,17 @@ class AsteroidRepository @Inject constructor(
 
     fun fetchAllPictureOfTodayDataFromInternet() {
         CoroutineScope(Dispatchers.IO).launch {
+            runBlocking {
             val pic = appNetwork.getAsteroidPhoto()
             if (pic!!.isSuccessful) {
                 insertPictureOfTodayDataToDataBase(pic.body())
+            }
+            else{
+                Log.v("TAG",pic.message())
+                Log.v("TAG",pic.errorBody().toString())
+                Log.v("TAG",pic.toString())
+
+            }
             }
         }
     }

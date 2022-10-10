@@ -28,7 +28,7 @@ object NetworkModule {
     @Provides
     fun provideNetworkService(): AsteroidResponse {
 
-//        val httpClient = OkHttpClient.Builder()
+        val httpClient = OkHttpClient.Builder()
 //            .addInterceptor(ApiKeyInterceptor())
 
         val gson = GsonBuilder()
@@ -36,7 +36,7 @@ object NetworkModule {
             .create()
 
         return Retrofit.Builder()
-//            .client(httpClient.build())
+            .client(httpClient.build())
             .baseUrl(baseUrl)
 //            .addConverterFactory(MoshiConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
