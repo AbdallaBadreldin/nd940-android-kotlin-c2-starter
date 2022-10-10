@@ -10,8 +10,11 @@ import com.udacity.asteroidradar.domain.models.Asteroid
 @Dao
 interface AsteroidDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertAsteroid(astroid: Asteroid)
+    fun insertAsteroid(astroid: Asteroid)
 
-    @Query("SELECT * FROM Asteroid ")
-    fun getAllAsteroid(): LiveData<List<Asteroid>>
+//    @Query("Select * From Asteroid")
+//    fun getAllAsteroid(): LiveData<List<Asteroid>>
+//
+//    @Query("DELETE FROM Asteroid")
+//    fun clearAllData()
 }

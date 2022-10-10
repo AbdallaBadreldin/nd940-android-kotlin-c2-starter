@@ -9,11 +9,13 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface AsteroidResponse {
-    @GET("planetary/apod?api_key=$API_KEY")
-    fun getAsteroidPhoto(): Response<PictureOfDay?>?
+    @GET("planetary/apod&api_key=${API_KEY}")
+    suspend fun getAsteroidPhoto(): Response<PictureOfDay?>?
 
     @GET("neo/rest/v1/feed?start_date={start_date}&end_date={end_date}&api_key=$API_KEY")
-    fun getAsteroidList(@Path("start_date")startDate:String,
-                             @Path("end_date") endDate:String): Callback<Asteroid?>?
+    suspend fun getAsteroidList(
+        @Path("start_date") startDate: String,
+        @Path("end_date") endDate: String
+    ): Callback<Asteroid?>?
 
 }

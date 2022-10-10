@@ -2,13 +2,17 @@ package com.udacity.asteroidradar.domain.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.udacity.asteroidradar.data.local.Converters
 
 @Entity
 data class Asteroid(
     @PrimaryKey val id: Long? = 0,
     val element_count: Int? = 0,
+    @TypeConverters(Converters::class)
     val links: Links? ,
-    val near_earth_objects: NearEarthObjects?
+    @TypeConverters(Converters::class)
+    val  near_earth_objects: NearEarthObjects?
 
     /*
 //    val codename: String,
