@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.udacity.asteroidradar.domain.models.Asteroid
+import retrofit2.http.Path
 
 @Dao
 interface AsteroidDao {
@@ -17,4 +18,7 @@ interface AsteroidDao {
 
     @Query("DELETE FROM Asteroid")
     fun clearAllData()
+
+    @Query("Select * From Asteroid Where closeApproachDate LIKE :day")
+    fun getAsteroidForToday(day:String): LiveData<List<Asteroid>>
 }

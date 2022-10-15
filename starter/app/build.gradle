@@ -69,9 +69,11 @@ dependencies {
 
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-    implementation("androidx.room:room-ktx:2.5.0-alpha03")
-    implementation "androidx.room:room-runtime:2.5.0-alpha03"
-    kapt "androidx.room:room-compiler:2.5.0-alpha03"
+    implementation("androidx.room:room-ktx:2.4.3")
+    implementation "androidx.room:room-runtime:2.4.3"
+    implementation 'androidx.hilt:hilt-common:1.0.0'
+    implementation 'androidx.hilt:hilt-work:1.0.0'
+    kapt "androidx.room:room-compiler:2.4.3"
 
     implementation 'androidx.work:work-runtime:2.8.0-alpha04'
 
@@ -88,8 +90,6 @@ dependencies {
 
     // retrofit gson
     implementation 'com.google.code.gson:gson:2.9.0'
-
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
 }
 
 kapt {

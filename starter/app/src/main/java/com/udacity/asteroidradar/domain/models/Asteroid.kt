@@ -1,8 +1,11 @@
 package com.udacity.asteroidradar.domain.models
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity
 data class Asteroid(
     /*  @PrimaryKey val id: Long? = 0,
@@ -34,4 +37,4 @@ data class Asteroid(
     val relativeVelocity: Double,
     val distanceFromEarth: Double,
     val isPotentiallyHazardous: Boolean
-) : java.io.Serializable
+) : Parcelable

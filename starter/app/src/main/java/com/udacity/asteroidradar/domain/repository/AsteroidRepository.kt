@@ -2,7 +2,6 @@ package com.udacity.asteroidradar.domain.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.google.gson.internal.bind.JsonAdapterAnnotationTypeAdapterFactory
 import com.udacity.asteroidradar.api.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.data.local.AsteroidDao
 import com.udacity.asteroidradar.data.local.PictureOfTodayDao
@@ -17,6 +16,8 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 
@@ -28,7 +29,6 @@ class AsteroidRepository @Inject constructor(
     fun fetchAllAsteroidDataFromInternet() {
         CoroutineScope(Dispatchers.IO).launch {
             runBlocking {
-                val respon = appNetwork.getAsteroidList()
                 val call: Call<String> = appNetwork.getAsteroidList()
                 call.enqueue(object : Callback<String> {
                     override fun onResponse(
@@ -36,9 +36,9 @@ class AsteroidRepository @Inject constructor(
                         response: Response<String>
                     ) {
                         if (response.isSuccessful) {
-                         val arrray=   parseAsteroidsJsonResult( JSONObject(response.body().toString()))
+                            val arrray =
+                                parseAsteroidsJsonResult(JSONObject(response.body().toString()))
                             insertAsteroidDataToDataBase(arrray)
-                            Log.v("TAG RESPONSE",response.body().toString())
 
                         }
                     }
@@ -57,7 +57,19 @@ class AsteroidRepository @Inject constructor(
         return asteroidDao.getAllAsteroid()
     }
 
-    fun getAsteroidDataFromDatabaseByDate() {}
+    fun getAsteroidDataFromDatabaseForToday(): LiveData<List<Asteroid>> {
+        val currentDate = Calendar.getInstance().time
+        val df = SimpleDateFormat("yyyy-MM-dd", Locale("en"))
+        val day = df.format(currentDate)
+        return asteroidDao.getAsteroidForToday(day)
+    }
+
+    fun getAsteroidDataFromDatabaseForNextWeek(): LiveData<List<Asteroid>> {
+        val currentDate = Calendar.getInstance().time
+        val df = SimpleDateFormat("yyyy-mm-dd", Locale.getDefault())
+        val day = df.format(currentDate)
+        return asteroidDao.getAsteroidForToday(day)
+    }
 
     private fun insertAsteroidDataToDataBase(body: ArrayList<Asteroid>?) {
         CoroutineScope(Dispatchers.IO).launch {
@@ -72,9 +84,6 @@ class AsteroidRepository @Inject constructor(
                 if (pic!!.isSuccessful) {
                     insertPictureOfTodayDataToDataBase(pic.body())
                 } else {
-                    Log.v("TAG", pic.message())
-                    Log.v("TAG", pic.errorBody().toString())
-                    Log.v("TAG", pic.toString())
                 }
             }
         }
