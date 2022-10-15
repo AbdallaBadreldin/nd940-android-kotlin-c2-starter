@@ -6,6 +6,9 @@
         <variable
             name="viewModel"
             type="com.udacity.asteroidradar.ui.main.MainViewModel" />
+        <variable
+            name="picOfToday"
+            type="com.udacity.asteroidradar.domain.models.PictureOfDay" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,7 +31,8 @@
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/placeholder_picture_of_day"
-                android:contentDescription="@string/this_is_nasa_s_picture_of_day_showing_nothing_yet" />
+                android:contentDescription="@{picOfToday.title}"
+                />
 
             <TextView
                 android:id="@+id/textView"
@@ -40,7 +44,7 @@
                 android:textSize="20sp"
                 android:layout_gravity="bottom"
                 android:background="#55010613"
-                android:text="@string/image_of_the_day" />
+                android:text="@{picOfToday.title}"/>
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView

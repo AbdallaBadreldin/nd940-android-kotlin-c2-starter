@@ -52,8 +52,7 @@ class MainFragment : Fragment() {
                 if (it.mediaType == "image") {
                     val picasso = Picasso.get()
                     picasso.load(it.url).into(binding.activityMainImageOfTheDay)
-                    binding.activityMainImageOfTheDay.contentDescription = it.title
-                    binding.textView.text = it.title
+                    binding.picOfToday=it
                 } else {
                     //not image
                 }
