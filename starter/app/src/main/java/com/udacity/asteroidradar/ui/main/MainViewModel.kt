@@ -19,12 +19,11 @@ class MainViewModel @Inject constructor(val repo: AsteroidRepository) : ViewMode
         return repo.getAllDataPictureOfTodayFromDatabase()
     }
 
-     fun getAllAsteroids(): LiveData<List<Asteroid>>
-    {
+    fun getAllAsteroids(): LiveData<List<Asteroid>> {
         return repo.getAllDataAsteroidFromDatabase()
     }
-    fun getTodayAsteroidData(): LiveData<List<Asteroid>>
-    {
+
+    fun getTodayAsteroidData(): LiveData<List<Asteroid>> {
         return repo.getAsteroidDataFromDatabaseForToday()
     }
 
@@ -38,9 +37,11 @@ class MainViewModel @Inject constructor(val repo: AsteroidRepository) : ViewMode
 
     fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
             if (capabilities != null) {
                 when {
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {

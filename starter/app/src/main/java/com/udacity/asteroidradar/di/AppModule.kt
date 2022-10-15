@@ -1,17 +1,13 @@
 package com.udacity.asteroidradar.di
 
 import android.content.Context
-import androidx.databinding.adapters.Converters
 import androidx.room.Room
-import androidx.room.TypeConverter
-import androidx.room.TypeConverters
 import com.udacity.asteroidradar.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -31,7 +27,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideApplicationDatabase(@ApplicationContext app: Context): AppDatabase =
-        Room.databaseBuilder(app, AppDatabase::class.java, "asteroid_table").allowMainThreadQueries().build()
+        Room.databaseBuilder(app, AppDatabase::class.java, "asteroid_table")
+            .allowMainThreadQueries().build()
 
 
     @Provides

@@ -42,7 +42,6 @@ class MainFragment : Fragment() {
             viewModel.fetchAllAsteroids()
         }
 
-//        showAllData()
         showDataOfPicOfToday()
         return binding.root
     }
@@ -53,6 +52,7 @@ class MainFragment : Fragment() {
                 if (it.mediaType == "image") {
                     val picasso = Picasso.get()
                     picasso.load(it.url).into(binding.activityMainImageOfTheDay)
+                    binding.activityMainImageOfTheDay.contentDescription= it.title
                 } else {
                     //not image
 

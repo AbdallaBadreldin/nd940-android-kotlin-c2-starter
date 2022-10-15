@@ -39,9 +39,10 @@ class RecyclerViewAdapter(private var asteroidList: List<Asteroid>) :
 
         if (asteroid.isPotentiallyHazardous) {
             holder.icon.setImageResource(R.drawable.ic_status_potentially_hazardous)
+            holder.icon.contentDescription =holder.icon.context.getString(R.string.potentially_hazardous_asteroid_image)
         }else {
             holder.icon.setImageResource(R.drawable.ic_status_normal)
-//            holder.icon.contentDescription =holder.icon.context.getString(R.string.smile_face)
+            holder.icon.contentDescription =holder.icon.context.getString(R.string.not_hazardous_asteroid_image)
         }
         holder.constraint.setOnClickListener {
             val navController = Navigation.findNavController(it)
