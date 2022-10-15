@@ -29,7 +29,7 @@ class MainFragment : Fragment() {
             if (it != null) {
                 recyclerView = binding.asteroidRecycler
                 recyclerViewAdapter = RecyclerViewAdapter(it)
-                recyclerView.adapter=recyclerViewAdapter
+                recyclerView.adapter = recyclerViewAdapter
                 recyclerView.layoutManager = LinearLayoutManager(context)
             } else {
                 // no data exists
@@ -52,12 +52,11 @@ class MainFragment : Fragment() {
                 if (it.mediaType == "image") {
                     val picasso = Picasso.get()
                     picasso.load(it.url).into(binding.activityMainImageOfTheDay)
-                    binding.activityMainImageOfTheDay.contentDescription= it.title
+                    binding.activityMainImageOfTheDay.contentDescription = it.title
+                    binding.textView.text = it.title
                 } else {
                     //not image
-
                 }
-
             } else {
                 // no data exists
             }
