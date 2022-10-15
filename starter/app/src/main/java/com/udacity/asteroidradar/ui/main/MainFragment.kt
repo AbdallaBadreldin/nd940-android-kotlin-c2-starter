@@ -40,10 +40,19 @@ class MainFragment : Fragment() {
         }
 
 
+        viewModel.getAllAsteroids().observe(viewLifecycleOwner) {
+            if (it != null) {
 
+
+                }
+            else {
+                // no data exists
+
+            }
+        }
 
         viewModel.fetchAllPicturesOfToday()
-
+        viewModel.fetchAllAsteroids()
 
         return binding.root
     }
